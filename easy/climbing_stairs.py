@@ -1,18 +1,16 @@
-# https://leetcode.com/problems/contains-duplicate/
+# https://leetcode.com/problems/climbing-stairs/
 
 class Solution:
-    def containsDuplicate(self, nums: List[int]) -> bool:
-        used_nums = dict()
+    def climbStairs(self, n: int) -> int:
+        num_ways = [1, 2]
         
-        flag = False
+        if n == 1:
+            return num_ways[0]
         
-        for num in nums:
-            if num in used_nums:
-                flag = True
-                break
-            used_nums[num] = 1
+        if n == 2:
+            return num_ways[1]
+        
+        for i in range(1, n-1):
+            num_ways.append(num_ways[i] + num_ways[i-1])
             
-        if flag:
-            return True
-        else:
-            return False
+        return num_ways[-1]
